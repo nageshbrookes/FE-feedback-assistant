@@ -1,2 +1,10 @@
-# FE-feedback-assistant
-feedback assistant provider front end
+## Getting Started
+
+Prerequsite
+Node Js
+
+First, run the development server:
+
+```bash
+npm run dev
+```
