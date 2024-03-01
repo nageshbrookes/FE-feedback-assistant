@@ -4,7 +4,7 @@ import React from "react";
 import Navigation from "@components/Navigation";
 import Footer from "@components/Footer";
 import Image from "next/image";
-import headerImage from "/public/images/headerImage.png"
+import headerImage from "/public/images/headerImage.svg"
 import spotifyImage from "/public/images/spotifyImage.png"
 import tiktokImage from "/public/images/tiktokImage.png"
 import bbcImage from "/public/images/bbcImage.png"
@@ -42,7 +42,7 @@ function page() {
               <Navigation />
               <div id={"home"} className={"my-[90px] grid md:grid-cols-2"}>
                   <div className={"max-w-[600px]"}>
-                      <div className={"text-[32px] md:text-[56px] mb-6"}>Find your tribe: Connect with people who share your spark.</div>
+                      <div className={"text-[32px] md:text-[56px] mb-6 leading-[64px] font-semibold"}>Find your tribe: Connect with people who share your spark.</div>
                       <div className={"text-base md:text-lg mb-14"}>
                           Whatever sparks your curiosity, there's a community waiting
                           to welcome you. From quiet book cafes to adventurous hikes, and from insightful business talks

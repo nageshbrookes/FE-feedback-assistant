@@ -32,17 +32,7 @@ function page() {
               </div>
 
               <div>
-                <div className={""}>
-                  <Button text={"Sign up with Google"}
-                          style={"shadow-md w-full border text-sm p-2.5 rounded-[7px] flex justify-center gap-2"}
-                          iconLeft={<Image src={googleImage} alt={""}/>}
-                  />
-                </div>
-                <div className={"flex items-center my-6"}>
-                  <hr className={"w-full"}/>
-                  <div className={"w-20 text-center"}>or</div>
-                  <hr className={"w-full"}/>
-                </div>
+                
                 <div className={"border border-[#E6E6E6] rounded-lg text-sm"}>
                   <InputField placeholder={"Enter name*"} style={"w-full px-3 py-2 focus-visible:outline-0 rounded-t-lg border-b"}/>
                   <InputField placeholder={"Enter email*"} style={"w-full px-3 py-2 focus-visible:outline-0 border-b"}/>

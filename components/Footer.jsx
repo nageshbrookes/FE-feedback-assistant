@@ -1,9 +1,9 @@
 import Image from "next/image";
-import facebookIcon from "../public/images/facebookIcon.png"
-import linkedinIcon from "../public/images/linkedinIcon.png"
-import twitterIcon from "../public/images/twitterIcon.png"
-import youtubeIcon from "../public/images/youtubeIcon.png"
-import instagramIcon from "../public/images/instagramIcon.png"
+import facebookIcon from "../public/images/facebook.svg"
+import linkedinIcon from "../public/images/linkedin.svg"
+import twitterIcon from "../public/images/twitter.svg"
+import youtubeIcon from "../public/images/youtube.svg"
+import instagramIcon from "../public/images/instagram.svg"
 import Logo from "@components/image/logo";
 export default function(){
     return (
