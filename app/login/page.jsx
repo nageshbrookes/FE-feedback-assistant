@@ -16,7 +16,9 @@ function page() {
 
           <div className={"flex flex-col h-full"}>
               <div className={"p-6"}>
-                  <Logo />
+                <Link href={"/"}>
+                <Logo />
+                </Link>
               </div>
               <div className={"grow flex justify-center items-center"}>
                   <div className={"w-full md:max-w-[400px] px-4"}>

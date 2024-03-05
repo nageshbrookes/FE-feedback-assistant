@@ -13,6 +13,7 @@ import rakutenImage from "/public/images/rakutenImage.png"
 import pointerImage from "/public/images/pointerImage.svg"
 import device from "/public/images/device.svg"
 import database from "/public/images/database.svg"
+import goup from "/public/images/go-up.svg"
 import receive from "/public/images/receive.svg"
 import Button from "@components/button/Button";
 import DiscoverSection from "@components/DiscoverSection";
@@ -37,7 +38,7 @@ function page() {
         },
     ]
   return (
-      <div>
+      <div className="relative">
           <div className={"px-5 md:px-10 lg:px-20 xl:px-[120px] bg-[#F8F8F8]"}>
               <Navigation />
               <div id={"home"} className={"my-[90px] grid md:grid-cols-2"}>
@@ -49,8 +50,9 @@ function page() {
                           to creative skill-sharing workshops, Ticket hub offers a universe of experiences designed to
                           connect you with kindred spirits.
                       </div>
-                      <div>
+                      <div><a href={"/signup"}>
                           <Button text={"Create an Event"} style={"py-4 px-5 bg-[#6A5BC1] text-white rounded-full font-medium"} />
+                          </a>
                       </div>
                   </div>
                   <div className={"grid justify-center items-center mt-10"}>
@@ -89,9 +91,16 @@ function page() {
               </div>
           </div>
 
+          <div className="flex justify-end p-5">
+
+             <Image src={goup} alt={""} onClick={()=>window.scrollTo(0,0)} className="cursor-pointer hover:animate-bounce"/>
+         
+          </div>
+
           <div id={"contact"} className={"px-5 md:px-10 lg:px-20 xl:px-[120px]"}>
               <Footer />
           </div>
+          
       </div>
 
   );

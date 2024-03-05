@@ -12,9 +12,11 @@ function Navigation() {
     const [toggleState, setToggleState] = useState(false);
 
     return (
-        <div className={"py-6 flex justify-between items-center"}>
+        <div className={"py-6 flex justify-between items-center sticky top-0 bg-[#F8F8F8]"} id="navigation">
             <div>
-                <Logo/>
+            <Link href={"/"}>
+                <Logo />
+            </Link>
             </div>
             <div className={" gap-12 hidden md:flex"}>
                 <Link href={"/#home"} >Home</Link>
