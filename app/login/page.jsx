@@ -17,11 +17,30 @@ function page() {
     email: "",
     password: "",
   });
+  const [errorEmail,setErrorEmail ] = React.useState(false);
+
+  const validEmail = (email)=>{
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
+  const handleEmailChange = (e)=>{
+    const email = e.target.value;
+    setUser({ ...user,email });
+    setErrorEmail(!vailddateEmail(email));
+  }
+
+  const handlePasswordChange = (e)=>{
+    setUser({ ...user,password: e.target.value})
+  }
+  
 
   const login = () => {
     console.log(user);
-    if (user.email == "test@gmail.com" && user.password == "Test@123") {
+    if (validEmail(user.email) && user.password == "Test@123") {
       router.push("/dashboard");
+    }else{
+      setErrorEmail(true)
     }
   };
 
@@ -55,19 +74,26 @@ function page() {
                     "w-full px-3 py-2 focus-visible:outline-0 rounded-t-lg border-b"
                   }
                   value={user.email}
-                  onChange={(e) => setUser({ ...user, email: e.target.value })}
+                  onChange={handleEmailChange}
                 />
+                {
+                  errorEmail &&(
+                    <div className="text-red-500 text-sm pl-3 pt-1">
+                      Please enter a vaild email address
+                      </div>
+                  )
+                }
                 <InputField
                   placeholder={"Create a password*"}
                   style={
                     "w-full px-3 py-2 focus-visible:outline-0 rounded-b-lg"
                   }
                   value={user.password}
-                  onChange={(e) =>
-                    setUser({ ...user, password: e.target.value })
-                  }
+                  onChange={handleEmailChange}
+                  type = {'password'}
                 />
               </div>
+            
               <div className={"flex justify-center my-5"}>
                 <span className={"font-medium text-sm text-[#6A5BC1]"}>
                   Forgot Password?
