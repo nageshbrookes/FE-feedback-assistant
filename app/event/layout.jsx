@@ -1,4 +1,3 @@
-
 import "@styles/globals.css";
 
 import HomeNavigation from "@components/HomeNavigation";
