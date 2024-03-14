@@ -11,8 +11,8 @@ export default function({title, icon, value, percentage, comment}){
                     <Image src={icon} alt={""} />
                 </div>
             </div>
-            <div className={"flex gap-4 mt-6"}>
-                <div>{value}</div>
+            <div className={"flex gap-4 mt-6 items-center"}>
+                <div className={"text-[30px]"}>{value}</div>
                 <div>
                     {
                         changeColor(percentage)
