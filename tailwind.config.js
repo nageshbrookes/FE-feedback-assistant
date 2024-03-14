@@ -16,6 +16,13 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      color: { // for text fields
+        "primary-1": "#6A5BC1",
+      },
+      backgroundColor:{
+        "primary-1": "#6A5BC1",
+        "light-grey": "#F9F9F9",
+      }
     },
   },
   darkMode: "class",
