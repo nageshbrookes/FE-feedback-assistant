@@ -58,7 +58,7 @@ function page() {
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
                 <InputField
-                  placeholder={"Create a password*"}
+                  placeholder={"Enter password*"}
                   style={
                     "w-full px-3 py-2 focus-visible:outline-0 rounded-b-lg"
                   }
