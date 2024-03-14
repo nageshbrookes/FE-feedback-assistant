@@ -1,57 +1,11 @@
 import Button from "@components/button/Button";
 import IconEdit from "../public/images/editIcon.svg"
-import eventCardImage from "../public/images/eventCardImage.png"
-import eventCardImage1 from "../public/images/eventCardImage1.png"
-import eventCardImage2 from "../public/images/eventCardImage2.png"
-import eventCardImage3 from "../public/images/eventCardImage3.png"
-import eventCardImage4 from "../public/images/eventCardImage4.png"
-import eventCardImage5 from "../public/images/eventCardImage5.png"
 import Image from "next/image";
 import HomeEventCard from "@components/HomeEventCard";
 import pointerImage2 from "@public/images/pointerImage2.svg";
-
+import Events from "../data/event"
 export default function (){
-    const events = [
-        {
-            title: "September Perform 2023",
-            date: "Sep 31-36 , 2023",
-            location: "San Diego, California - US",
-            image: eventCardImage
-        },
-        {
-            title: "September Fest 2023",
-            date: "Sep 31-36 , 2023",
-            location: "San Diego, California - US",
-            image: eventCardImage1
-        },
-        {
-            title: "September Perform 2022",
-            date: "Sep 31-36 , 2022",
-            location: "San Diego, California - US",
-            image: eventCardImage2
-        },
-        {
-            title: "September Fest 2022",
-            date: "Sep 31-36 , 2022",
-            location: "San Diego, California - US",
-            image: eventCardImage3,
-            classes: "hidden md:block"
-        },
-        {
-            title: "September Form 2023",
-            date: "Sep 31-36 , 2023",
-            location: "San Diego, California - US",
-            image: eventCardImage4,
-            classes: "hidden xl:block"
-        },
-        {
-            title: "September Form 2022",
-            date: "Sep 31-36 , 2023",
-            location: "San Diego, California - US",
-            image: eventCardImage5,
-            classes: "hidden xl:block"
-        }
-    ]
+
     return (
         <div id={"works"} className={"py-20"}>
             <div className={"flex justify-between mb-12"}>
@@ -73,11 +27,11 @@ export default function (){
             </div>
             <div className={"grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"}>
                 {
-                    events.map((event) => {
+                    Events.map((event) => {
                         return (
                             <HomeEventCard key={event.title} event={event}/>
                         )
-                })
+                    })
                 }
 
             </div>
