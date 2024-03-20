@@ -26,11 +26,11 @@ export default function ({event}) {
                                           details={"Gelora Bung Karno Stadium, Jakarta, Indonesia"} />
                 </div>
 
-                <div className={"my-6"}>
+                <div className={"my-6 grid grid-cols-2"}>
                     <ListEventDetailsCard name={"Ticket Available"} details={"200000"}/>
                     <ListEventDetailsCard name={"Ticket Price"} details={"$114"}/>
                 </div>
-                <div className={"my-6"}>
+                <div className={"my-6 grid grid-cols-2"}>
                     <ListEventDetailsCard name={"Event Date & Time"} details={"December 31, 2023 - 16:00 PM"}/>
                     <ListEventDetailsCard name={"Ticket Selling Period"}
                                           details={"September 1, 2023 - December 1, 2023"}/>

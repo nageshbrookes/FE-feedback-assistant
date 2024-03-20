@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, {useState} from "react";
 import Image from "next/image";
 import authImage from "../../public/images/authImage.png";
 import googleImage from "../../public/images/google.svg";
@@ -11,9 +12,16 @@ import PasswordValidationBox from "@components/PasswordValidationBox";
 import Link from "next/link";
 
 function page() {
-  // const style = {
-  //     border: "1px solid red"
-  // }
+  const [validationArray, setValidationArray] = useState({
+    "olc": false,
+    "osc": false,
+    "ouc": false,
+    "ecm": false,
+    "onm": false,
+  })
+  const [password, setPassword] = useState("")
+  const [showPass, setShowPass] = useState(false)
+
   return (
     <div className={"w-full h-screen grid lg:grid-cols-2"}>
       <div className={"flex flex-col h-full"}>
@@ -39,30 +47,62 @@ function page() {
             <div>
               <div className={"border border-[#E6E6E6] rounded-lg text-sm"}>
                 <InputField
-                  placeholder={"Enter name*"}
-                  style={
-                    "w-full px-3 py-2 focus-visible:outline-0 rounded-t-lg border-b"
-                  }
+                    placeholder={"Enter name*"}
+                    style={
+                      "w-full px-3 py-2 focus-visible:outline-0 rounded-t-lg border-b"
+                    }
                 />
+
                 <InputField
-                  placeholder={"Enter email*"}
-                  style={"w-full px-3 py-2 focus-visible:outline-0 border-b"}
+                    placeholder={"Enter email*"}
+                    style={"w-full px-3 py-2 focus-visible:outline-0 border-b"}
+                    type={"email"}
+                    required={true}
                 />
-                <InputField
-                  placeholder={"Create a password*"}
-                  style={
-                    "w-full px-3 py-2 focus-visible:outline-0 rounded-b-lg"
-                  }
-                />
+                <div className={"relative"}>
+                  <InputField
+                      placeholder={"Create a password*"}
+                      style={
+                        "w-full px-3 py-2 focus-visible:outline-0 rounded-b-lg"
+                      }
+                      type={showPass ? "" : "password"}
+                      onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <div className={"absolute top-0 right-2 h-full flex items-center"} onClick={()=>setShowPass(!showPass)}>
+                    {
+                      showPass
+                        ? (
+                            <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                                stroke="currentColor" className="w-6 h-6">
+                              <path strokeLinecap="round" strokeLinejoin="round"
+                                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                            </svg>
+                          )
+                          : (
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                                   stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round"
+                                      d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"/>
+                              </svg>
+                          )
+                    }
+
+                  </div>
+                </div>
+
               </div>
               <div className={"my-5"}>
-                <PasswordValidationBox />
+                <PasswordValidationBox password={password} validationArray={validationArray}
+                                       setValidation={setValidationArray}/>
               </div>
               <div className={"mb-6"}>
                 <Button
-                  text={"Create account"}
-                  style={
-                    "shadow-md w-full border text-sm p-2.5 rounded-[7px] bg-[#6A5BC1] text-white rounded-full"
+                    disabled={true}
+                    text={"Create account"}
+                    style={
+                        "shadow-md w-full border text-sm p-2.5 rounded-[7px] bg-[#6A5BC1] " +
+                        "text-white rounded-full disabled:bg-gray-500 disabled:cursor-not-allowed"
                   }
                 />
               </div>

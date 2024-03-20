@@ -1,6 +1,5 @@
 import "@styles/globals.css";
 
-
 import HomeNavigation from "@components/HomeNavigation";
 import InnerNavigation from "@components/InnerNavigation";
 
