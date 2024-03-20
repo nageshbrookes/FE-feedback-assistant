@@ -65,6 +65,8 @@ function page() {
       <EventModal
         isOpen={isOpenEventModal}
         close={() => closeModal()}
+        title="Event Details"
+        showbtn={true}
         eventId={eventId}
         event={<EventDetails event={eventState} />}
       />

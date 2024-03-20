@@ -4,11 +4,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { feedbackQuestions } from "@data/feedbackData";
 import { useRouter } from "next/navigation";
+import AtendeeSelector from "@components/AtendeeSelector";
+import EventModal from "@components/dialog/EventModal";
+import Button from "@components/button/Button";
 
 function page() {
   const router = useRouter();
   const eventId = router.query;
   const [questions, setData] = useState([]);
+  let [isOpenEventModal, setIsOpenEventModal] = useState(false);
 
   useEffect(() => {
     console.log("hi");
@@ -18,8 +22,36 @@ function page() {
     }
   });
 
+  function closeModal() {
+    setIsOpenEventModal(false);
+  }
+
+  function openModal() {
+    setIsOpenEventModal(true);
+  }
+
   return (
     <div>
+      <EventModal
+        isOpen={isOpenEventModal}
+        title="Attendee Information"
+        close={() => closeModal()}
+        showbtn={false}
+        event={<AtendeeSelector />}
+      />
+      <div>
+        <Button
+          style={"bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"}
+          onClick={() => openModal()}
+          text="Select Attendees"
+        />
+      </div>
+      <div>
+        <Button
+          style={"bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"}
+          text="Publish"
+        />
+      </div>
       <form className="max-w-xl mx-auto mt-16 flex w-full flex-col border rounded-lg bg-white p-8">
         <h2 className="text-2xl font-bold mb-4">Feedback Form</h2>
         {questions.map((question, ind) => {

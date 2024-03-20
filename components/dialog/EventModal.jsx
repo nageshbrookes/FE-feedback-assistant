@@ -7,7 +7,8 @@ import Button from "@components/button/Button";
 
 export default function EventModal({
   isOpen = true,
-  title = "modal details",
+  title = "",
+  showbtn = false,
   event = null,
   eventId = null,
   close = () => {},
@@ -44,19 +45,21 @@ export default function EventModal({
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
                 >
-                  <div>Event Details</div>
+                  <div>{title}</div>
                   <div>
-                    <Button
-                      text={"Add Event Form"}
-                      style={
-                        "bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"
-                      }
-                      onClick={() => {
-                        router.push(
-                          `/dashboard/create-feedback-form?eventId=${eventId}`
-                        );
-                      }}
-                    />
+                    {showbtn && (
+                      <Button
+                        text="Add Feedback Form"
+                        style={
+                          "bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"
+                        }
+                        onClick={() => {
+                          router.push(
+                            `/dashboard/create-feedback-form?eventId=${eventId}`
+                          );
+                        }}
+                      />
+                    )}
                   </div>
                   <div className={"text-2xl"} onClick={close}>
                     x
