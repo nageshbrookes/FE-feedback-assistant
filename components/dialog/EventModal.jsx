@@ -11,6 +11,7 @@ export default function EventModal({
   showbtn = false,
   event = null,
   eventId = null,
+  showclose = false,
   close = () => {},
 }) {
   const router = useRouter();
@@ -67,13 +68,15 @@ export default function EventModal({
                 </DialogHeader>
                 <div>{event}</div>
                 <div className="mt-4 flex justify-end">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={close}
-                  >
-                    Close
-                  </button>
+                  {showclose && (
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={close}
+                    >
+                      Close
+                    </button>
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

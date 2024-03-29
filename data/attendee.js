@@ -2,12 +2,12 @@ export const AttendeeData = [
   {
     Name: "Nagesh",
     Email: "nagesh@gmail.com",
-    Selected: true,
+    Selected: false,
   },
   {
     Name: "Nafissa",
     Email: "nagesh@gmail.com",
-    Selected: true,
+    Selected: false,
   },
   {
     Name: "Adarsh",

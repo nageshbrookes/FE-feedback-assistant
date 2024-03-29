@@ -19,9 +19,9 @@ function AtendeeSelector() {
                   <td>
                     <input
                       type="checkbox"
-                      checked={ad.Selected ? "true" : "false"}
-                      onChange={(ad) => {
-                        console.log("hi");
+                      key={ad.Name}
+                      onChange={(event) => {
+                        console.log(ad.Selected);
                         ad.Selected = !ad.Selected;
                       }}
                     />
