@@ -18,8 +18,20 @@ function page() {
     password: "",
   });
 
-  const login = () => {
-    console.log(user);
+  const login = async () => {
+    try {
+      fetch("/api/authenticate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    console.log(post);
     if (user.email == "test@gmail.com" && user.password == "Test@123") {
       router.push("/dashboard");
     }
