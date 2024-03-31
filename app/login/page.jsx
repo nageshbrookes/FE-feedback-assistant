@@ -18,7 +18,8 @@ function page() {
     password: "",
   });
 
-  const login = async () => {
+  const login = async (event) => {
+    event.preventDefault();
     try {
       fetch("/api/authenticate", {
         method: "POST",
@@ -30,8 +31,6 @@ function page() {
     } catch (error) {
       console.error(error);
     }
-
-    console.log(post);
     if (user.email == "test@gmail.com" && user.password == "Test@123") {
       router.push("/dashboard");
     }
@@ -91,7 +90,7 @@ function page() {
                   style={
                     "shadow-md w-full border text-sm p-2.5 rounded-[7px] bg-[#6A5BC1] text-white rounded-full"
                   }
-                  onClick={login}
+                  onClick={(event) => login(event)}
                 />
               </div>
               <div className={"flex justify-center"}>

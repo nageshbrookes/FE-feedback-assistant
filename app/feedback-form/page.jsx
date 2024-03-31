@@ -1,9 +1,5 @@
-import prisma from "@lib/prisma";
+import { getUser } from "@connection/connection";
 
-async function getUser() {
-  const users = await prisma.Users.findMany({});
-  return users;
-}
 async function page() {
   const users = await getUser();
   console.log(users);
