@@ -47,12 +47,17 @@ export default function EventModal({
                   className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
                 >
                   <div>{title}</div>
-                  <div>
+  
+                  <div className={"text-2xl"} onClick={close}>
+                    x
+                  </div>
+                </DialogHeader>
+                    <div className={"flex justify-end relative"}>
                     {showbtn && (
                       <Button
                         text="Add Feedback Form"
                         style={
-                          "bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"
+                          "bg-[#6A5BC1] py-3 px-5 text-white rounded-2xl absolute top-5"
                         }
                         onClick={() => {
                           router.push(
@@ -61,12 +66,8 @@ export default function EventModal({
                         }}
                       />
                     )}
-                  </div>
-                  <div className={"text-2xl"} onClick={close}>
-                    x
-                  </div>
-                </DialogHeader>
-                <div>{event}</div>
+                  </div>     
+                  <div>{event}</div>
                 <div className="mt-4 flex justify-end">
                   {showclose && (
                     <button

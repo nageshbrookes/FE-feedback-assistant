@@ -18,31 +18,26 @@ function page() {
 
     const reviewList = [
         {
-            attendee: "Larry Harris",
             email: "lar.har@mail.com",
             event: "JKT 48 11th Anniversary Concert",
             reviews: "Very cool event from them I really like being able to reminisce again!",
         },
         {
-            attendee: "Larry Harris",
             email: "lar.har@mail.com",
             event: "JKT 48 11th Anniversary Concert",
             reviews: "What an interesting event! It's also very easy to order tickets, the best!",
         },
         {
-            attendee: "Larry Harris",
             email: "lar.har@mail.com",
             event: "JKT 48 11th Anniversary Concert",
             reviews: "Blink is too perfect, complementing high school nostalgia",
         },
         {
-            attendee: "Larry Harris",
             email: "lar.har@mail.com",
             event: "JKT 48 11th Anniversary Concert",
             reviews: "I really like! Set off on another world tour soon!",
         },
         {
-            attendee: "Larry Harris",
             email: "lar.har@mail.com",
             event: "JKT 48 11th Anniversary Concert",
             reviews: "Green Day never fails to give concerts that amaze their fans!",
@@ -135,7 +130,6 @@ function page() {
                                         return (
                                             <tr key={index}>
                                                 <td className={"p-2.5"}>
-                                                    <div>{review.attendee}</div>
                                                     <div>{review.email}</div>
                                                 </td>
                                                 <td className={"p-2.5"}>{review.event}</td>
@@ -143,12 +137,10 @@ function page() {
                                                 <td className={"p-2.5"}>
                                                     <div className={"flex gap-2.5"}>
                                                         <div
-                                                            className={"flex gap-1.5 items-center bg-[#f9f9f9] p-1 pr-2 rounded-lg text-sm"}>
+                                                            className={"flex gap-1.5 items-center bg-[#f9f9f9] p-1 pr-2 rounded-lg text-sm cursor-pointer"} onClick={() => openModal(review)}>
                                                             <Image
                                                                 src={ViewIcon}
                                                                 alt={""}
-                                                                onClick={() => openModal(review)}
-                                                                className={"cursor-pointer"}
                                                             />
                                                             <div>View</div>
                                                         </div>

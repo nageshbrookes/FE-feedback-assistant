@@ -53,8 +53,10 @@ function page() {
   return (
     <div className={"py-8 px-[100px]"}>
       <EventModal
+        title={"Event Details"}
         isOpen={isOpenEventModal}
         showclose={true}
+        showbtn={true}
         close={() => closeModal()}
         event={<EventDetails event={eventState} />}
       />
@@ -124,12 +126,10 @@ function page() {
                           <td className={"p-2.5"}>{event.price}</td>
                           <td className={"p-2.5"}>
                             <div className={"flex gap-2.5"}>
-                              <div className={"flex gap-1.5 items-center bg-[#f9f9f9] p-1 pr-2 rounded-lg text-sm"}>
+                              <div className={"flex gap-1.5 items-center bg-[#f9f9f9] p-1 pr-2 rounded-lg text-sm cursor-pointer"} onClick={() => openModal(event)}>
                                 <Image
                                     src={ViewIcon}
                                     alt={""}
-                                    onClick={() => openModal(event)}
-                                    className={"cursor-pointer"}
                                 />
                                 <div>View</div>
                               </div>
