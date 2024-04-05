@@ -10,7 +10,6 @@ export default function ReviewModal({
   title = "",
   showbtn = false,
   review = null,
-  eventId = null,
   showclose = false,
   close = () => {},
 }) {
