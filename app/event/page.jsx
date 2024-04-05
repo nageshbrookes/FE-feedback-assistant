@@ -53,8 +53,10 @@ function page() {
   return (
     <div className={"py-8 px-[100px]"}>
       <EventModal
+        title={"Event Details"}
         isOpen={isOpenEventModal}
         showclose={true}
+        showbtn={true}
         close={() => closeModal()}
         event={<EventDetails event={eventState} />}
       />
@@ -104,9 +106,6 @@ function page() {
                   {/* Row 1 */} {/*Table head*/}
                   <thead className={"text-left"}>
                     <tr className={"bg-[#F9F9F9] text-[#6C6C6C]"}>
-                      <th className={"p-2.5"}>
-                        <input type="checkbox"></input>
-                      </th>
                       <th className={"p-2.5"}>Event ID</th>
                       <th className={"p-2.5"}>Event Name</th>
                       <th className={"p-2.5"}>Ticket Selling Period</th>
@@ -120,9 +119,6 @@ function page() {
                     {activeEventList.map((event, index) => {
                       return (
                         <tr key={index}>
-                          <td className={"p-2.5"}>
-                            <input type="checkbox"></input>
-                          </td>
                           <td className={"p-2.5"}>{event.id}</td>
                           <td className={"p-2.5"}>{event.name}</td>
                           <td className={"p-2.5"}>{event.period}</td>
@@ -130,15 +126,17 @@ function page() {
                           <td className={"p-2.5"}>{event.price}</td>
                           <td className={"p-2.5"}>
                             <div className={"flex gap-2.5"}>
-                              <Image
-                                src={ViewIcon}
-                                alt={""}
-                                onClick={() => openModal(event)}
-                                className={"cursor-pointer"}
-                              />
-                              <Image src={EventLinkIcon} alt={""} />
-                              <Image src={EditIcon} alt={""} />
-                              <Image src={DeleteIcon} alt={""} />
+                              <div className={"flex gap-1.5 items-center bg-[#f9f9f9] p-1 pr-2 rounded-lg text-sm cursor-pointer"} onClick={() => openModal(event)}>
+                                <Image
+                                    src={ViewIcon}
+                                    alt={""}
+                                />
+                                <div>View</div>
+                              </div>
+
+                              {/*<Image src={EventLinkIcon} alt={""} />*/}
+                              {/*<Image src={EditIcon} alt={""} />*/}
+                              {/*<Image src={DeleteIcon} alt={""} />*/}
                             </div>
                           </td>
                         </tr>

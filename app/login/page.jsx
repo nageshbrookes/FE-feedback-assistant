@@ -20,9 +20,9 @@ function page() {
 
   const login = () => {
     console.log(user);
-    //if (user.email == "test@gmail.com" && user.password == "Test@123") {
-      router.push("/dashboard");
-    //}
+    // if (user.email == "test@gmail.com" && user.password == "Test@123") {
+    router.push("/dashboard");
+    // }
   };
 
   return (
