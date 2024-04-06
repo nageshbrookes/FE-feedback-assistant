@@ -44,13 +44,14 @@ export async function saveAttendeesInfo(data) {
 
 export async function saveFeedbackQuestion(data) {
   let status = "fail";
+  console.log("dadas", data);
   if (data) {
-    await data.map(async (que) => {
+    await data.data.map(async (que) => {
       status = await prisma.FeedbackQuestion.upsert({
         where: {
           questionId: que.questionId,
         },
-        data: {
+        update: {
           question: que.question,
           type: que.type,
           options: que.options,
@@ -58,11 +59,11 @@ export async function saveFeedbackQuestion(data) {
         },
         create: {
           question: que.question,
-          type: que.type,
-          options: que.options,
-          required: que.required,
-          answer: que.answer,
-          eventID: que.eventID,
+          type: que.type ? que.type : "text",
+          options: que.options ? que.options : [],
+          required: que.required ? que.required : false,
+          answer: que.answer ? que.answer : "",
+          eventID: que.eventID ? que.eventID : "",
         },
       });
     });

@@ -5,6 +5,7 @@ export const FeedbackFormate = {
   options: [""],
   required: false,
   answer: "",
+  eventID: "",
 };
 
 export const feedbackQuestions = [
