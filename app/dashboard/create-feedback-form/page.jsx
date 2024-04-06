@@ -16,12 +16,32 @@ function page() {
   const [questions, setData] = useState([]);
   let [isOpenEventModal, setIsOpenEventModal] = useState(false);
   let [IsQuestionModel, setIsQuestionModel] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log("hi");
     if (questions.length == 0) {
-      const questionFormate = feedbackQuestions;
-      setData(questionFormate);
+      setLoading(true);
+      console.log({ eventId: "1" });
+      console.log("getting data");
+      try {
+        fetch("/api/get-questions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ eventId: "1" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setData(data.data);
+          });
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     }
   });
 
@@ -58,13 +78,14 @@ function page() {
 
   return (
     <div>
+      {loading && <div className="loading-bar">Loading...</div>}
       <EventModal
         isOpen={isOpenEventModal}
         title="Attendee Information"
         close={() => closeModal()}
         showclose={true}
         showbtn={false}
-        event={<AtendeeSelector />}
+        event={<AtendeeSelector eventId={"1"} />}
       />
       <EventModal
         isOpen={IsQuestionModel}
