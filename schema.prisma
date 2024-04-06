@@ -2,20 +2,42 @@
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-
 model Users {
-  id            String       @default(cuid()) @id
-  name          String
-  email         String?    @unique
-  password      String   
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  id        String   @id @default(cuid())
+  name      String
+  email     String?  @unique
+  password  String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+}
+
+model FeedbackQuestion {
+  questionId String   @id @default(cuid())
+  question   String
+  type       String
+  options    String[]
+  required   Boolean
+  answer     String
+  eventID    String
+}
+
+model AttendeesProfile {
+  name                 String
+  email                String
+  selected             Boolean
+  profilId             String         @id @default(cuid())
+  AttendeesInfo        AttendeesInfo? @relation(fields: [attendeesInfoEventID], references: [eventID])
+  attendeesInfoEventID String?
+}
+
+model AttendeesInfo {
+  eventID   String             @unique
+  attendees AttendeesProfile[]
 }
