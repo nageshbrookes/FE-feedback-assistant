@@ -2,7 +2,7 @@ export const FeedbackFormate = {
   questionId: "",
   question: "hi there weq",
   type: "",
-  options: [],
+  options: [""],
   required: false,
   answer: "",
 };

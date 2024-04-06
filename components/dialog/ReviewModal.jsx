@@ -5,11 +5,11 @@ import { DialogHeader } from "@node_modules/next/dist/client/components/react-de
 import { useRouter } from "next/navigation";
 import Button from "@components/button/Button";
 
-export default function EventModal({
+export default function ReviewModal({
   isOpen = true,
   title = "",
   showbtn = false,
-  event = null,
+  review = null,
   eventId = null,
   showclose = false,
   close = () => {},
@@ -46,28 +46,12 @@ export default function EventModal({
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
                 >
-                  <div>{title}</div>
-  
+                  <div>View Feedback</div>
                   <div className={"text-2xl"} onClick={close}>
                     x
                   </div>
                 </DialogHeader>
-                    <div className={"flex justify-end relative"}>
-                    {showbtn && (
-                      <Button
-                        text="Add Feedback Form"
-                        style={
-                          "bg-[#6A5BC1] py-3 px-5 text-white rounded-2xl absolute top-5"
-                        }
-                        onClick={() => {
-                          router.push(
-                            `/dashboard/create-feedback-form?eventId=${eventId}`
-                          );
-                        }}
-                      />
-                    )}
-                  </div>     
-                  <div>{event}</div>
+                <div>{review}</div>
                 <div className="mt-4 flex justify-end">
                   {showclose && (
                     <button
