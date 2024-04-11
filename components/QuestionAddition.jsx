@@ -3,6 +3,8 @@
 import { Select, SelectItem } from "@nextui-org/react";
 import { FeedbackFormate } from "@data/feedbackData";
 import { useState } from "react";
+import Button from "@components/button/Button";
+import { toast } from "react-hot-toast";
 
 export default function ({ close = () => {}, onSave, eventID }) {
   const types = ["text", "checkbox", "radio"];
@@ -82,17 +84,31 @@ export default function ({ close = () => {}, onSave, eventID }) {
                 onChange={(event) => (options[ind] = event.target.value)}
               />
             ))}
-
+            {/* 
             <button type="button" onClick={() => addMoreOption()}>
               add more options
-            </button>
+            </button> */}
+            <Button
+              text="Add more options"
+              style={"bg-[#6A5BC1] py-3 px-5 text-white rounded-2xl"}
+              onClick={() => {
+                addMoreOption();
+              }}
+            />
           </div>
         )}
       </div>
       <div>
-        <button type="button" onClick={() => saveData()}>
+        {/* <button type="button" onClick={() => saveData()}>
           save
-        </button>
+        </button> */}
+        <Button
+          text="Add Question"
+          style={"bg-[#6A5BC1] py-3 px-5 text-white rounded-2xl"}
+          onClick={() => {
+            saveData();
+          }}
+        />
       </div>
     </div>
   );

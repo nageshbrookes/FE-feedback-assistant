@@ -7,6 +7,7 @@ import AtendeeSelector from "@components/AtendeeSelector";
 import EventModal from "@components/dialog/EventModal";
 import Button from "@components/button/Button";
 import QuestionAddition from "@components/QuestionAddition";
+import { toast } from "react-hot-toast";
 
 function page() {
   const searchParams = useSearchParams();
@@ -81,6 +82,10 @@ function page() {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          const handleButtonClick = () => {
+            toast.success("Question is added"); // Displays a success message
+          };
+          handleButtonClick();
         });
     } catch (err) {
       console.error(err);
@@ -130,10 +135,17 @@ function page() {
       </div>
       <form className="max-w-xl mx-auto mt-16 flex w-full flex-col border rounded-lg bg-white p-8">
         <h2 className="text-2xl font-bold mb-4">Feedback Form</h2>
-        <button type="button" onClick={() => openQuestionAdditionModel()}>
+        <Button
+          text="Add Question"
+          style={"bg-[#6A5BC1] py-3 px-5 text-white rounded-2xl"}
+          onClick={() => {
+            openQuestionAdditionModel();
+          }}
+        />
+        {/* <button type="button" onClick={() => openQuestionAdditionModel()}>
           {" "}
           Add Question
-        </button>
+        </button> */}
         {questions.map((question, ind) => {
           if (question.type == "text") {
             return (
