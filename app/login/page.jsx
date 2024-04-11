@@ -10,6 +10,7 @@ import Button from "@components/button/Button";
 import InputField from "@components/input/InputField";
 import PasswordValidationBox from "@components/PasswordValidationBox";
 import Link from "next/link";
+import NextTopLoader from "nextjs-toploader";
 
 function page() {
   const router = useRouter();
@@ -38,6 +39,7 @@ function page() {
 
   return (
     <div className={"w-full h-screen grid lg:grid-cols-2"}>
+      <NextTopLoader />
       <div className={"flex flex-col h-full"}>
         <div className={"p-6"}>
           <Link href={"/"}>

@@ -8,6 +8,7 @@ import EventModal from "@components/dialog/EventModal";
 import Button from "@components/button/Button";
 import QuestionAddition from "@components/QuestionAddition";
 import { toast } from "react-hot-toast";
+import NextTopLoader from "nextjs-toploader";
 
 function page() {
   const searchParams = useSearchParams();
@@ -96,6 +97,7 @@ function page() {
 
   return (
     <div>
+      <NextTopLoader />
       {loading && <div className="loading-bar">Loading...</div>}
       <EventModal
         isOpen={isOpenEventModal}
