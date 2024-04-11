@@ -2,27 +2,23 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import { feedbackQuestions } from "@data/feedbackData";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import AtendeeSelector from "@components/AtendeeSelector";
 import EventModal from "@components/dialog/EventModal";
 import Button from "@components/button/Button";
-import { FeedbackFormate } from "@data/feedbackData";
 import QuestionAddition from "@components/QuestionAddition";
 
 function page() {
-  const router = useRouter();
-  const eventId = router.query;
+  const searchParams = useSearchParams();
+  const eventId = searchParams.get("eventId");
   const [questions, setData] = useState([]);
   let [isOpenEventModal, setIsOpenEventModal] = useState(false);
   let [IsQuestionModel, setIsQuestionModel] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("hi");
     if (questions.length == 0) {
       setLoading(true);
-      console.log({ eventId: "1" });
       console.log("getting data");
       try {
         fetch("/api/get-questions", {
@@ -30,7 +26,7 @@ function page() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ eventId: "1" }),
+          body: JSON.stringify({ eventId: eventId }),
         })
           .then((res) => res.json())
           .then((data) => {
@@ -61,12 +57,12 @@ function page() {
     setIsQuestionModel(true);
   }
 
-  function addQuestion() {
-    console.log("om");
-    const newAddition = [...questions, FeedbackFormate];
-    console.log(newAddition);
-    setData(newAddition);
-  }
+  // function addQuestion() {
+  //   console.log("om");
+  //   const newAddition = [...questions, FeedbackFormate];
+  //   console.log(newAddition);
+  //   setData(newAddition);
+  // }
 
   function updateData(data) {
     console.log("parer");
@@ -74,6 +70,23 @@ function page() {
     const newAddition = [...questions, data];
     console.log(newAddition);
     setData(newAddition);
+    try {
+      fetch("/api/update-questions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: newAddition }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -94,6 +107,7 @@ function page() {
         showbtn={false}
         event={
           <QuestionAddition
+            eventID={eventId}
             close={() => closeQuestionModal()}
             onSave={updateData}
           />

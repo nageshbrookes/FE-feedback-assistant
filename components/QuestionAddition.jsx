@@ -4,7 +4,7 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { FeedbackFormate } from "@data/feedbackData";
 import { useState } from "react";
 
-export default function ({ close = () => {}, onSave }) {
+export default function ({ close = () => {}, onSave, eventID }) {
   const types = ["text", "checkbox", "radio"];
   const [Questionformate, setQuestionValue] = useState(FeedbackFormate);
   const [options, setOptions] = useState(Questionformate.options);
@@ -34,6 +34,7 @@ export default function ({ close = () => {}, onSave }) {
 
   function saveData() {
     Questionformate.options = options;
+    Questionformate.eventID = eventID;
     console.log(Questionformate);
     onSave(JSON.parse(JSON.stringify(Questionformate)));
     setQuestionValue(FeedbackFormate);
