@@ -59,13 +59,6 @@ function page() {
     setIsQuestionModel(true);
   }
 
-  // function addQuestion() {
-  //   console.log("om");
-  //   const newAddition = [...questions, FeedbackFormate];
-  //   console.log(newAddition);
-  //   setData(newAddition);
-  // }
-
   function updateData(data) {
     console.log("parer");
     console.log(data);

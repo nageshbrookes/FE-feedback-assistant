@@ -8,8 +8,8 @@ import Logo from "@components/image/logo";
 import IconLogo from "@components/icon/IconLogo";
 import Button from "@components/button/Button";
 import InputField from "@components/input/InputField";
-import PasswordValidationBox from "@components/PasswordValidationBox";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 import NextTopLoader from "nextjs-toploader";
 
 function page() {
@@ -28,12 +28,25 @@ function page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const handleSuccess = () => {
+            toast.success("LoggedIn Successfully");
+          };
+          const handleError = () => {
+            toast.success("LoggedIn Successfully");
+          };
+          if (data && data.status == "Successfull") {
+            handleSuccess();
+            router.push("/dashboard");
+          } else {
+            handleError();
+          }
+        });
     } catch (error) {
       console.error(error);
-    }
-    if (user.email == "test@gmail.com" && user.password == "Test@123") {
-      router.push("/dashboard");
     }
   };
 
