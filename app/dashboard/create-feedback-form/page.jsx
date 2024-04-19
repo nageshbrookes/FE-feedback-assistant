@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import AtendeeSelector from "@components/AtendeeSelector";
 import EventModal from "@components/dialog/EventModal";
 import Button from "@components/button/Button";
+import ShareLink from "@components/ShareLink";
 import QuestionAddition from "@components/QuestionAddition";
 import { toast } from "react-hot-toast";
 import NextTopLoader from "nextjs-toploader";
@@ -17,6 +18,7 @@ function page() {
   let [isOpenEventModal, setIsOpenEventModal] = useState(false);
   let [IsQuestionModel, setIsQuestionModel] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isPublished, setIsPublished] = useState(false);
 
   useEffect(() => {
     if (questions.length == 0) {
@@ -57,6 +59,14 @@ function page() {
 
   function openQuestionAdditionModel() {
     setIsQuestionModel(true);
+  }
+
+  function closePublishedModel() {
+    setIsPublished(false);
+  }
+
+  function publish() {
+    setIsPublished(true);
   }
 
   function updateData(data) {
@@ -113,16 +123,32 @@ function page() {
           />
         }
       />
-      <div className="flex flex-row-reverse">
+
+      <EventModal
+        isOpen={isPublished}
+        title="Link to share"
+        close={() => closePublishedModel()}
+        showbtn={false}
+        event={
+          <ShareLink eventID={eventId} close={() => closePublishedModel()} />
+        }
+      />
+      <div className={"gap-3 hidden md:flex flex-row-reverse mt-5 mr-5"}>
         <div>
           <Button
-            style={"bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"}
+            style={
+              "bg-[#dea749] py-3 px-5 bg-opacity-100 text-black rounded-2xl"
+            }
             text="Publish"
+            type="button"
+            onClick={() => publish()}
           />
         </div>
         <div>
           <Button
-            style={"bg-white py-3 px-5 bg-opacity-100 text-black rounded-2xl"}
+            style={
+              "bg-[#725fde] py-3 px-5 bg-opacity-100 text-black rounded-2xl"
+            }
             onClick={() => openModal()}
             text="Select Attendees"
           />
@@ -165,13 +191,7 @@ function page() {
                   <b>{ind + 1}. </b>
                   {question.question}
                 </div>
-                <div
-                  className={
-                    question.type == "radio"
-                      ? "flex items-center space-x-2"
-                      : ""
-                  }
-                >
+                <div>
                   {question.options.map((ops) => {
                     return (
                       <div>

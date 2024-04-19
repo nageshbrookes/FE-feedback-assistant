@@ -29,10 +29,19 @@ function Navigation() {
         <Link href={"/#about"}>About</Link>
         <Link href={"/#contact"}>Contact</Link>
       </div>
-      <div className={"hidden md:block"}>
+      <div className={"gap-3 hidden md:flex"}>
         <Link href={"/signup"}>
           <Button
             text={"Create Account"}
+            style={
+              "text-sm text-[#6A5BC1] border border-[#6A5BC1] rounded-full py-2 px-3 hover:bg-[#6A5BC1] hover:text-white font-medium cursor-pointer"
+            }
+          />
+        </Link>
+
+        <Link href={"/login"}>
+          <Button
+            text={"Sign In"}
             style={
               "text-sm text-[#6A5BC1] border border-[#6A5BC1] rounded-full py-2 px-3 hover:bg-[#6A5BC1] hover:text-white font-medium cursor-pointer"
             }
