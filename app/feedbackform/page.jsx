@@ -38,7 +38,7 @@ function feedbackform() {
 
   function submit(event) {
     event.preventDefault();
-    // setIsSubmitted(true);
+    setIsSubmitted(true);
     console.log(questions);
   }
 
@@ -113,7 +113,7 @@ function feedbackform() {
                   <div className="col-span-full">
                     <label
                       htmlFor="about"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       {question.question}
                     </label>
@@ -158,7 +158,13 @@ function feedbackform() {
     );
   } else {
     return (
-      <div>Thank you for submitting, Thank you for submitting the form </div>
+      <div>
+        <div className={"p-6"}>
+          <Link href={"/"}>
+            <Logo />
+          </Link>
+        </div>
+        Thank you for submitting, Thank you for submitting the form </div>
     );
   }
 }

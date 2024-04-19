@@ -21,7 +21,7 @@ function page() {
     {
       title: "Events",
       icon: EventFrame,
-      value: "12",
+      value: "3",
       percentage: "",
       comment: "",
     },
@@ -32,13 +32,13 @@ function page() {
       percentage: "-25%",
       comment: "vs last month",
     },
-    {
-      title: "Revenue",
-      icon: RevenueFrame,
-      value: "£1,122",
-      percentage: "+25%",
-      comment: "vs last month",
-    },
+    // {
+    //   title: "Revenue",
+    //   icon: RevenueFrame,
+    //   value: "£1,122",
+    //   percentage: "+25%",
+    //   comment: "vs last month",
+    // },
     {
       title: "Reviews",
       icon: ReviewFrame,

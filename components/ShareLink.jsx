@@ -9,9 +9,10 @@ export default function ({ close = () => {}, eventID }) {
     query,
   };
   return (
+    
     <div>
       <Link href={href}>
-        http://localhost:3000/dashboard/feedbackform?eventId=1
+        http://localhost:3000/feedbackform?eventId=1
       </Link>
     </div>
   );
