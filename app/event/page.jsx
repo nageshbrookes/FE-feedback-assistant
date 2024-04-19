@@ -74,9 +74,9 @@ return (
           <div>
             <input type={"search"} placeholder={"Search in active events"} className={"border px-4 py-3 rounded-xl"} />
           </div>
-          <div>
+          {/* <div>
             <Button text={"Create Feedback Form"} style={"text-white bg-primary-1 px-4 py-3 rounded-full"} />
-          </div>
+          </div> */}
         </div>
 
         <table className={"w-full"}>
