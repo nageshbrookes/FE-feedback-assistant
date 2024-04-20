@@ -27,7 +27,25 @@ function page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      });
+      }).then((res)=>res.json()).then((data)=> {console.log(data)
+      
+      
+        if(data.data[0].email==user.email && data.data[0].password==user.password){
+          router.push("/dashboard");
+        }
+        
+        else{
+          console.log("not logged in ")
+        }
+
+
+      
+      })
+
+
+      
+
+
     } catch (error) {
       console.error(error);
     }
