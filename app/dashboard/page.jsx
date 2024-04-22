@@ -13,6 +13,7 @@ import { Dialog } from "@node_modules/@headlessui/react";
 import ListEventDetailsCard from "@components/ListEventDetailsCard";
 import Image from "next/image";
 import EventDetails from "@components/EventDetails";
+import NextTopLoader from "nextjs-toploader";
 
 function page() {
   // importing analytics data response
@@ -62,6 +63,7 @@ function page() {
 
   return (
     <div className={"py-8 px-[100px]"}>
+      <NextTopLoader />
       <EventModal
         isOpen={isOpenEventModal}
         close={() => closeModal()}

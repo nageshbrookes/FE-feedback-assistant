@@ -1,7 +1,11 @@
 import prisma from "@lib/prisma";
 
-export async function getUser() {
-  const users = await prisma.Users.findMany({});
+export async function getUser(user) {
+  const users = await prisma.Users.findUnique({
+    where: {
+      email: user.email,
+    },
+  });
   return users;
 }
 
@@ -32,6 +36,25 @@ export async function saveAttendeesInfo(data) {
           selected: ad.selected,
         },
       });
+    });
+    setTimeout(() => {
+      console.log(status);
+      return "success";
+    }, 5000);
+  } else {
+    return status;
+  }
+}
+
+export async function createUserQuuery(user) {
+  let status = "fail";
+  if (user) {
+    status = await prisma.users.create({
+      data: {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      },
     });
     setTimeout(() => {
       console.log(status);

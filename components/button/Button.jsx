@@ -1,9 +1,18 @@
 import React from "react";
 
-function Button({ text, style, iconLeft, iconRight, children, onClick, disabled=false }) {
+function Button({
+  text,
+  style,
+  iconLeft,
+  iconRight,
+  children,
+  onClick,
+  disabled = false,
+}) {
   return (
     <button
-        disabled={disabled}
+      type="Button"
+      disabled={disabled}
       className={
         "transition-all duration-300 bg-opacity-80 hover:bg-opacity-100 " +
         style

@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import Button from "./button/Button";
+import { toast } from "react-hot-toast";
 
 function AtendeeSelector({ eventId }) {
   const [attendeesData, setAttendeesData] = useState([]);
@@ -50,6 +52,10 @@ function AtendeeSelector({ eventId }) {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          const handleButtonClick = () => {
+            toast.success("Attendee Data is updated"); // Displays a success message
+          };
+          handleButtonClick();
         });
     } catch (err) {
       console.error(err);
@@ -88,9 +94,14 @@ function AtendeeSelector({ eventId }) {
             })}
           </tbody>
         </table>
-        <button type="button" onClick={(event) => save(event)}>
+        {/* <button type="button" onClick={(event) => save(event)}>
           save
-        </button>
+        </button> */}
+        <Button
+          text="Update Attendees"
+          style={"bg-[#6A5BC1] py-3 px-5 text-white rounded-2xl"}
+          onClick={(event) => save(event)}
+        />
       </div>
     </div>
   );

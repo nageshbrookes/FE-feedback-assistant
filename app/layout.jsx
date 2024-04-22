@@ -1,4 +1,9 @@
 import "@styles/globals.css";
+import { Toaster } from "react-hot-toast";
+import { Inter } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Feedback Assistant",
@@ -8,8 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <main>{children}</main>
+      <body className={inter.className}>
+        <NextTopLoader />
+        <Toaster position="bottom-center" />
+        {children}
       </body>
     </html>
   );
