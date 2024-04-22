@@ -61,8 +61,8 @@ export default function ({ close = () => {}, onSave, eventID }) {
       <div>
         <Select
           isRequired
-          label="Favorite Animal"
-          placeholder="Select an animal"
+          label="Select Question type"
+          placeholder="Select an type"
           onChange={(event) => setType(event)}
           className="max-w-xs"
         >

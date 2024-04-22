@@ -8,8 +8,9 @@ import Logo from "@components/image/logo";
 import IconLogo from "@components/icon/IconLogo";
 import Button from "@components/button/Button";
 import InputField from "@components/input/InputField";
-import PasswordValidationBox from "@components/PasswordValidationBox";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
+import NextTopLoader from "nextjs-toploader";
 
 function page() {
   const router = useRouter();
@@ -27,35 +28,31 @@ function page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      }).then((res)=>res.json()).then((data)=> {console.log(data)
-      
-      
-        if(data.data[0].email==user.email && data.data[0].password==user.password){
-          router.push("/dashboard");
-        }
-        
-        else{
-          console.log("not logged in")
-        }
-
-
-      
       })
-
-
-      
-
-
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const handleSuccess = () => {
+            toast.success("LoggedIn Successfully");
+          };
+          const handleError = () => {
+            toast.success("LoggedIn Successfully");
+          };
+          if (data && data.status == "Successfull") {
+            handleSuccess();
+            router.push("/dashboard");
+          } else {
+            handleError();
+          }
+        });
     } catch (error) {
       console.error(error);
-    }
-    if (user.email == "test@gmail.com" && user.password == "Test@123") {
-      router.push("/dashboard");
     }
   };
 
   return (
     <div className={"w-full h-screen grid lg:grid-cols-2"}>
+      <NextTopLoader />
       <div className={"flex flex-col h-full"}>
         <div className={"p-6"}>
           <Link href={"/"}>
@@ -86,7 +83,7 @@ function page() {
                   value={user.email}
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
-                <InputField
+                <InputField type="password"
                   placeholder={"Enter password*"}
                   style={
                     "w-full px-3 py-2 focus-visible:outline-0 rounded-b-lg"
