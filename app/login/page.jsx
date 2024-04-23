@@ -36,7 +36,7 @@ function page() {
             toast.success("LoggedIn Successfully");
           };
           const handleError = () => {
-            toast.success("LoggedIn Successfully");
+            toast.error("Email or password is wrong");
           };
           if (data && data.status == "Successfull") {
             handleSuccess();
@@ -83,7 +83,8 @@ function page() {
                   value={user.email}
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
-                <InputField type="password"
+                <InputField
+                  type="password"
                   placeholder={"Enter password*"}
                   style={
                     "w-full px-3 py-2 focus-visible:outline-0 rounded-b-lg"

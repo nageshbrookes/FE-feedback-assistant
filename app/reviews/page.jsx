@@ -1,17 +1,59 @@
 "use client";
-import React, { useState } from "react";
 import Image from "next/image";
 import ViewIcon from "../../public/images/viewicon.svg";
-import EventLinkIcon from "../../public/images/eventlinkicon.svg";
-import EditIcon from "../../public/images/editframeicon.svg";
-import DeleteIcon from "../../public/images/deleteicon.svg";
-import { TableHeader } from "@nextui-org/react";
-import Button from "@components/button/Button";
-import { Tab } from "@headlessui/react";
-import EventDetails from "@components/EventDetails";
+import { useState, useEffect } from "react";
 import ReviewModal from "@components/dialog/ReviewModal";
 
 function page() {
+  const [reviews, setReview] = useState([]);
+  const [answers, setAnswers] = useState([]);
+
+  // useEffect(() => {
+  //   let i = 0;
+  //   if (answers.length == 0) {
+  //     i = 1;
+  //     console.log("getting data");
+  //     try {
+  //       fetch("/api/get-feedback-response", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ eventId: "1" }),
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log(data.data);
+  //           let dummy = [];
+  //           data.data.map((d) => {
+  //             let answer = JSON.parse(d.answers);
+  //             dummy.push(
+  //               answer.map((ans) => {
+  //                 return {
+  //                   reviews: d.overall,
+  //                   event: "JKT 48 11th Anniversary Concert",
+  //                   eventId: d.eventID,
+  //                 };
+  //               })
+  //             );
+  //             setReview({
+  //               reviews: d.overall,
+  //               event: "JKT 48 11th Anniversary Concert",
+  //               eventId: d.eventID,
+  //             });
+  //             setAnswers(answer);
+  //           });
+
+  //           console.log("asdfjajsdfkhj");
+  //           console.log(dummy);
+  //           console.log(answers);
+  //         });
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  // });
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }

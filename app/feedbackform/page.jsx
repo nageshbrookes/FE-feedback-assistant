@@ -7,12 +7,14 @@ import ReactStars from "react-stars";
 import Logo from "@components/image/logo";
 import { useSearchParams } from "next/navigation";
 import Button from "@components/button/Button";
+import { toast } from "react-hot-toast";
 
 function feedbackform() {
   const searchParams = useSearchParams();
   const eventId = searchParams.get("eventId");
   const [questions, setData] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [overall, setOverallValue] = useState();
 
   useEffect(() => {
     if (questions.length == 0) {
@@ -40,6 +42,41 @@ function feedbackform() {
     event.preventDefault();
     setIsSubmitted(true);
     console.log(questions);
+    let newAddition = {
+      answers: JSON.stringify(
+        questions.map((data) => {
+          return {
+            questionId: data.questionId,
+            question: data.question,
+            type: data.type,
+            options: data.options,
+            answer: data.answer,
+          };
+        })
+      ),
+      overall: overall,
+      eventID: eventId,
+    };
+    console.log(newAddition);
+    try {
+      fetch("/api/save-feedback-response", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: newAddition }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const handleButtonClick = () => {
+            toast.success("Response has been saved Successfully");
+          };
+          handleButtonClick();
+        });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   if (!isSubmitted) {
@@ -141,7 +178,12 @@ function feedbackform() {
               >
                 Your Overall Review
               </label>
-              <ReactStars count={5} size={40} color2={"#ffd700"} />
+              <ReactStars
+                onChange={(number) => setOverallValue(number)}
+                count={5}
+                size={40}
+                color2={"#ffd700"}
+              />
             </div>
           </div>
         </div>
@@ -164,7 +206,8 @@ function feedbackform() {
             <Logo />
           </Link>
         </div>
-        Thank you for submitting, Thank you for submitting the form </div>
+        Thank you for submitting, Thank you for submitting the form{" "}
+      </div>
     );
   }
 }

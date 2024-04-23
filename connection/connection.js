@@ -18,6 +18,15 @@ export async function getFeedbackQuestion(eventID) {
   return questions;
 }
 
+export async function getFeedbackResponse(eventID) {
+  const answers = await prisma.FeedbackResponse.findMany({
+    where: {
+      eventID: eventID,
+    },
+  });
+  return answers;
+}
+
 export async function getAttendees(eventID) {
   const AttendeesData = await prisma.AttendeesProfile.findMany({});
   console.log(AttendeesData);
@@ -89,6 +98,22 @@ export async function saveFeedbackQuestion(data) {
           eventID: que.eventID ? que.eventID : "",
         },
       });
+    });
+    setTimeout(() => {
+      console.log(status);
+      return "success";
+    }, 5000);
+  } else {
+    return status;
+  }
+}
+
+export async function saveFeedbackResponse(data) {
+  let status = "fail";
+  console.log("answers1111", data.data);
+  if (data) {
+    status = await prisma.FeedbackResponse.create({
+      data: data.data,
     });
     setTimeout(() => {
       console.log(status);

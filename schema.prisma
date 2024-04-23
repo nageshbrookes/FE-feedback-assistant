@@ -41,3 +41,11 @@ model AttendeesInfo {
   eventID   String             @unique
   attendees AttendeesProfile[]
 }
+
+model FeedbackResponse {
+  feedbackId String @id @default(cuid())
+  answers    String
+  overall    Int
+  eventID    String
+}
+
