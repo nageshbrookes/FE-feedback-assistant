@@ -51,7 +51,27 @@ export default function ReviewModal({
                     x
                   </div>
                 </DialogHeader>
-                <div>{review}</div>
+                <div>
+                  <div className={"text-sm p-4 "}>
+                    <div className={"flex justify-between"}>
+                      <div>
+                        <div className={"text-[#A3A3A3]"}>Event</div>
+                        <div>JKT 48 11th Anniversary Concert</div>
+                      </div>
+                    </div>
+                    {review &&
+                      review.map((answer) => {
+                        return (
+                          <div className={"my-4"}>
+                            <div className={"text-[#A3A3A3]"}>
+                              {answer.question}
+                            </div>
+                            <div>{answer.answer}</div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
                 <div className="mt-4 flex justify-end">
                   {showclose && (
                     <button

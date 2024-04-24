@@ -8,51 +8,35 @@ function page() {
   const [reviews, setReview] = useState([]);
   const [answers, setAnswers] = useState([]);
 
-  // useEffect(() => {
-  //   let i = 0;
-  //   if (answers.length == 0) {
-  //     i = 1;
-  //     console.log("getting data");
-  //     try {
-  //       fetch("/api/get-feedback-response", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ eventId: "1" }),
-  //       })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           console.log(data.data);
-  //           let dummy = [];
-  //           data.data.map((d) => {
-  //             let answer = JSON.parse(d.answers);
-  //             dummy.push(
-  //               answer.map((ans) => {
-  //                 return {
-  //                   reviews: d.overall,
-  //                   event: "JKT 48 11th Anniversary Concert",
-  //                   eventId: d.eventID,
-  //                 };
-  //               })
-  //             );
-  //             setReview({
-  //               reviews: d.overall,
-  //               event: "JKT 48 11th Anniversary Concert",
-  //               eventId: d.eventID,
-  //             });
-  //             setAnswers(answer);
-  //           });
-
-  //           console.log("asdfjajsdfkhj");
-  //           console.log(dummy);
-  //           console.log(answers);
-  //         });
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  // });
+  useEffect(() => {
+    console.log("asdfasdfasdf", reviews);
+    if (reviews.length == 0) {
+      try {
+        fetch("/api/get-feedback-response", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ eventId: "1" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            let review = [];
+            data.data.map((d) => {
+              review.push({
+                reviews: d.overall,
+                event: "JKT 48 11th Anniversary Concert",
+                eventId: d.eventID,
+                answers: JSON.parse(d.answers),
+              });
+              setReview(review);
+            });
+          });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  });
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -87,14 +71,14 @@ function page() {
       reviews: "Green Day never fails to give concerts that amaze their fans!",
     },
   ];
+
   let [isOpenEventModal, setIsOpenEventModal] = useState(false);
-  let [eventState, setEventState] = useState(null);
   function closeModal() {
-    setEventState(null);
     setIsOpenEventModal(false);
   }
-  function openModal(event) {
-    setEventState(event);
+  function openModal(index) {
+    setAnswers(reviews[index].answers);
+    console.log("asdfasdfasdfasdfpooiop", answers);
     setIsOpenEventModal(true);
   }
 
@@ -104,44 +88,7 @@ function page() {
         isOpen={isOpenEventModal}
         showclose={true}
         close={() => closeModal()}
-        review={
-          <div className={"text-sm p-4 "}>
-            <div className={"flex justify-between"}>
-              <div>
-                <div className={"text-[#A3A3A3]"}>Attendee</div>
-                <div>lar.har@mail.com</div>
-              </div>
-              <div>
-                <div className={"text-[#A3A3A3]"}>Event</div>
-                <div>JKT 48 11th Anniversary Concert</div>
-              </div>
-            </div>
-            <div className={"my-4"}>
-              <div className={"text-[#A3A3A3]"}>
-                Which aspect of the event did you enjoy the most?
-              </div>
-              <div>
-                Very cool event from them I really like being able to reminisce
-                again!
-              </div>
-            </div>
-            <div className={"my-4"}>
-              <div className={"text-[#A3A3A3]"}>
-                Were there any areas where you feel the event could be improved?
-              </div>
-              <div>
-                Very cool event from them I really like being able to reminisce
-                again!
-              </div>
-            </div>
-            <div className={"my-4"}>
-              <div className={"text-[#A3A3A3]"}>
-                Were there any areas where you feel the event could be improved?
-              </div>
-              <div>Extremely likely</div>
-            </div>
-          </div>
-        }
+        review={answers}
       />
 
       {/*insert breadcrumb*/}
@@ -158,19 +105,18 @@ function page() {
             {/* Row 1 */} {/*Table head*/}
             <thead className={"text-left"}>
               <tr className={"bg-[#F9F9F9] text-[#6C6C6C]"}>
-                <th className={"p-2.5"}>Attendees</th>
-                <th className={"p-2.5"}>Event</th>
-                <th className={"p-2.5"}>Reviews</th>
-                <th className={"p-2.5"}>Action</th>
+                <th className={"p-2.5"}>Event Id</th>
+                <th className={"p-2.5"}>Event Name</th>
+                <th className={"p-2.5"}>Overall Review</th>
               </tr>
             </thead>
             {/* Row 2 */}
             <tbody className={"w-full"}>
-              {reviewList.map((review, index) => {
+              {reviews.map((review, index) => {
                 return (
                   <tr key={index}>
                     <td className={"p-2.5"}>
-                      <div>{review.email}</div>
+                      <div>{review.eventId}</div>
                     </td>
                     <td className={"p-2.5"}>{review.event}</td>
                     <td className={"p-2.5"}>{review.reviews}</td>
@@ -180,7 +126,7 @@ function page() {
                           className={
                             "flex gap-1.5 items-center bg-[#f9f9f9] p-1 pr-2 rounded-lg text-sm cursor-pointer"
                           }
-                          onClick={() => openModal(review)}
+                          onClick={() => openModal(index)}
                         >
                           <Image src={ViewIcon} alt={""} />
                           <div>View</div>
